@@ -1,10 +1,14 @@
 var menuWidth = 260;
 
-function showDynamicModal(heading, content) {
+function showDynamicModal(heading, content, imgPath) {
     var m = $('#dynamicModal');
     m.find('h4').text(heading);
     m.find('pre').text(content);
-    m.openModal({ in_duration: 200 });
+	if (imgPath !== 'undefined'){
+		/*m.find('pre').after('<a href="' + imgPath + '" target="_blank"><img src="' + imgPath + '" width="100%" height="100%"/></a>');*/
+		m.find('pre').after('<img src="' + imgPath + '"></a>');
+	} 
+	m.openModal({ in_duration: 200 });
 }
 
 $('.details-container').click(function(evt) {
@@ -15,7 +19,13 @@ $('.details-container').click(function(evt) {
             t = t.parent();
         }
         
-        showDynamicModal(t.closest('tr').find('.name').text() + ' StatusMessage', t.next().text());
+		var statusMessage = t.next().text();
+		
+		if (statusMessage.includes("$$")){
+			var imgPath = statusMessage.split('$$')[1];
+		}
+		
+		showDynamicModal(t.closest('tr').find('.name').text() + ' StatusMessage', t.next().text(), imgPath);
     }
     
     if (t.is('.showDescription')) {
