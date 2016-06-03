@@ -10,7 +10,7 @@ function showDynamicModal(heading, content, imgPath) {
 		if (img.length){
 			img.attr('src', imgPath);
 		}else{
-			m.find('pre').after('<img src="' + imgPath + '">');
+			m.find('pre').after('<img src="' + imgPath + '" width="100%">');
 		}		
 	} 
 	m.openModal({ in_duration: 200 });
