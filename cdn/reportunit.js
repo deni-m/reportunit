@@ -6,7 +6,12 @@ function showDynamicModal(heading, content, imgPath) {
     m.find('pre').text(content);
 	if (imgPath !== 'undefined'){
 		/*m.find('pre').after('<a href="' + imgPath + '" target="_blank"><img src="' + imgPath + '" width="100%" height="100%"/></a>');*/
-		m.find('pre').after('<img src="' + imgPath + '"></a>');
+		var img = m.find('img');
+		if (img.length){
+			img.attr('src', imgPath);
+		}else{
+			m.find('pre').after('<img src="' + imgPath + '">');
+		}		
 	} 
 	m.openModal({ in_duration: 200 });
 }
