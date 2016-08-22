@@ -9,6 +9,7 @@ function showDynamicModal(heading, content, imgPath) {
 		var img = m.find('img');
 		if (img.length){
 			img.attr('src', imgPath);
+			m.find('a').attr('href', imgPath);
 		}else{
 			m.find('pre').after('<a href="'+imgPath+'" target="_blank"><img src="' + imgPath + '" width="100%"></a>');
 		}		
